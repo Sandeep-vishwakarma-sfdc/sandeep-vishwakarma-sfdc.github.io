@@ -259,9 +259,71 @@ section {
     background-color: var(--white);
 }
 
+/* Projects Section */
+.projects {
+    background-color: var(--salesforce-light-blue);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.project-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--salesforce-blue), var(--salesforce-purple));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.project-icon i {
+    font-size: 1.8rem;
+    color: var(--white);
+}
+
+.project-card h3 {
+    color: var(--salesforce-dark-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.project-tech {
+    color: var(--salesforce-blue);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-card p:last-of-type {
+    color: var(--gray-600);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
 .experience-timeline {
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
 }
 
 .experience-item {
@@ -269,21 +331,23 @@ section {
     gap: 2rem;
     margin-bottom: 3rem;
     position: relative;
+    align-items: flex-start;
 }
 
 .experience-item:last-child {
     margin-bottom: 0;
 }
 
-.experience-item::before {
+/* .experience-item::before {
     content: '';
     position: absolute;
-    left: 80px;
+    left: 170px;
     top: 0;
     bottom: -3rem;
-    width: 2px;
+    width: 3px;
     background: linear-gradient(180deg, var(--salesforce-blue), var(--salesforce-purple));
-}
+    border-radius: 2px;
+} */
 
 .experience-item:last-child::before {
     display: none;
@@ -291,12 +355,13 @@ section {
 
 .experience-date {
     flex-shrink: 0;
-    width: 160px;
+    width: 250px;
     text-align: right;
     font-weight: 600;
     color: var(--salesforce-blue);
     font-size: 1.1rem;
-    padding-top: 5px;
+    padding-top: 1rem;
+    padding-right: 1rem;
 }
 
 .experience-content {
@@ -305,6 +370,7 @@ section {
     padding: 2rem;
     border-radius: 10px;
     border-left: 4px solid var(--salesforce-blue);
+    margin-left: 0;
 }
 
 .experience-content h3 {
