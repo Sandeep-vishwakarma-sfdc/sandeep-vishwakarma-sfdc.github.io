@@ -114,81 +114,31 @@ if (heroTitle) {
     setTimeout(typeWriter, 500);
 }
 
-// Add mobile menu toggle (for responsive design)
-function createMobileMenu() {
-    const navbar = document.querySelector('.navbar');
-    const container = navbar.querySelector('.container');
-    
-    // Create hamburger menu button
-    const menuButton = document.createElement('button');
-    menuButton.className = 'mobile-menu-toggle';
-    menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-    menuButton.style.cssText = `
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0.5rem;
-    `;
-    
-    container.insertBefore(menuButton, container.firstChild);
-    
-    // Toggle mobile menu
-    menuButton.addEventListener('click', function() {
-        const navMenu = document.querySelector('.nav-menu');
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
         navMenu.classList.toggle('active');
-        
-        if (navMenu.classList.contains('active')) {
-            navMenu.style.display = 'flex';
-            navMenu.style.flexDirection = 'column';
-            navMenu.style.position = 'absolute';
-            navMenu.style.top = '100%';
-            navMenu.style.left = '0';
-            navMenu.style.right = '0';
-            navMenu.style.backgroundColor = '#032D60';
-            navMenu.style.padding = '1rem';
-            navMenu.style.gap = '1rem';
-        } else {
-            navMenu.style.display = '';
-            navMenu.style.flexDirection = '';
-            navMenu.style.position = '';
-            navMenu.style.top = '';
-            navMenu.style.left = '';
-            navMenu.style.right = '';
-            navMenu.style.backgroundColor = '';
-            navMenu.style.padding = '';
-            navMenu.style.gap = '';
-        }
     });
-    
-    // Show mobile menu button on small screens
-    if (window.innerWidth <= 768) {
-        menuButton.style.display = 'block';
-    }
-    
-    window.addEventListener('resize', function() {
-        if (window.innerWidth <= 768) {
-            menuButton.style.display = 'block';
-        } else {
-            menuButton.style.display = 'none';
-            const navMenu = document.querySelector('.nav-menu');
+
+    // Close menu when clicking on a link
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuToggle.classList.remove('active');
             navMenu.classList.remove('active');
-            navMenu.style.display = '';
-            navMenu.style.flexDirection = '';
-            navMenu.style.position = '';
-            navMenu.style.top = '';
-            navMenu.style.left = '';
-            navMenu.style.right = '';
-            navMenu.style.backgroundColor = '';
-            navMenu.style.padding = '';
-            navMenu.style.gap = '';
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!mobileMenuToggle.contains(event.target) && !navMenu.contains(event.target)) {
+            mobileMenuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
         }
     });
 }
-
-// Initialize mobile menu
-createMobileMenu();
 
 console.log('Portfolio loaded successfully! 🚀');
